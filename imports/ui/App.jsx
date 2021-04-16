@@ -8,7 +8,7 @@ export const App = () => {
 
   return (
     <div>
-      <h1>Welcome to Meteor!</h1>
+      <h1>This is a heading</h1>
 
       <ul>
         {tasks.map((task) => (
