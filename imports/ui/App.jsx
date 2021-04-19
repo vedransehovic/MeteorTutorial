@@ -4,8 +4,22 @@ import { TasksCollection } from "/imports/api/TasksCollection";
 import Task from "./Task";
 import { TaskForm } from "./TaskForm";
 
+const toggleChecked = ({ _id, isChecked }) => {
+  TasksCollection.update(_id, {
+    $set: {
+      isChecked: !isChecked,
+    },
+  });
+};
+
+const deleteTask = ({ _id }) => {
+  TaskCollection.remove(_id);
+};
+
 export const App = () => {
-  const tasks = useTracker(() => TasksCollection.find({}).fetch());
+  const tasks = useTracker(() =>
+    TasksCollection.find({}, { sort: { createdAt: -1 } }).fetch()
+  );
 
   return (
     <div>
@@ -13,7 +27,12 @@ export const App = () => {
       <TaskForm />
       <ul>
         {tasks.map((task) => (
-          <Task key={task._id} task={task} />
+          <Task
+            key={task._id}
+            task={task}
+            onCheckboxClick={toggleChecked}
+            onDeleteClick={deleteTask}
+          />
         ))}
       </ul>
     </div>
