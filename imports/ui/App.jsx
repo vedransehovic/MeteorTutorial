@@ -13,7 +13,7 @@ const toggleChecked = ({ _id, isChecked }) => {
 };
 
 const deleteTask = ({ _id }) => {
-  TaskCollection.remove(_id);
+  TasksCollection.remove(_id);
 };
 
 export const App = () => {
@@ -24,17 +24,6 @@ export const App = () => {
   return (
     <div>
       <h1>Welcome to Meteor</h1>
-      <TaskForm />
-      <ul>
-        {tasks.map((task) => (
-          <Task
-            key={task._id}
-            task={task}
-            onCheckboxClick={toggleChecked}
-            onDeleteClick={deleteTask}
-          />
-        ))}
-      </ul>
     </div>
   );
 };
