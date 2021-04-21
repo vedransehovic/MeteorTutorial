@@ -12,11 +12,7 @@ const ImageList = () => {
     return <ImageDetail image={image} />;
   });
 
-  return (
-    <div>
-      <ul className="media-list list-group">{RenderedImages}</ul>
-    </div>
-  );
+  return <ul className="list-unstyled">{RenderedImages}</ul>;
 };
 
 export default ImageList;
